@@ -1,8 +1,8 @@
 package br.com.fiap.equipe3.secondtechchallenge.controllers;
 
 import br.com.fiap.equipe3.secondtechchallenge.models.Scheduling;
+import br.com.fiap.equipe3.secondtechchallenge.models.SchedulingStatusDTO;
 import br.com.fiap.equipe3.secondtechchallenge.services.SchedulingService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +36,12 @@ public class SchedulingController {
         Scheduling foundedScheduling = this.schedulingService.findById(id);
 
         return ResponseEntity.ok(foundedScheduling);
+    }
+
+    @GetMapping("/{plate}/status")
+    public ResponseEntity<SchedulingStatusDTO> checkSchedulingStatusByPlate(@PathVariable String plate) {
+        SchedulingStatusDTO schedulingStatusDTO = this.schedulingService.findSchedulingStatusByPlate(plate);
+
+        return ResponseEntity.ok(schedulingStatusDTO);
     }
 }
