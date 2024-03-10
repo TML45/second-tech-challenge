@@ -44,4 +44,9 @@ public class SchedulingController {
 
         return ResponseEntity.ok(schedulingStatusDTO);
     }
+
+    @PutMapping
+    public ResponseEntity<Scheduling> update(@RequestBody Scheduling scheduling) {
+        return ResponseEntity.ok(this.schedulingService.update(scheduling));
+    }
 }

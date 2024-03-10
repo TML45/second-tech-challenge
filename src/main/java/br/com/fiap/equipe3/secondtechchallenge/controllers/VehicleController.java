@@ -37,4 +37,9 @@ public class VehicleController {
 
         return ResponseEntity.ok(foundedVehicle);
     }
+
+    @PutMapping
+    public ResponseEntity<Vehicle> update(@RequestBody Vehicle vehicle) {
+        return ResponseEntity.ok(this.vehicleService.update(vehicle));
+    }
 }
