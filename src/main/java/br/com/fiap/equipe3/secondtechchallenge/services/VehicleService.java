@@ -10,4 +10,7 @@ public interface VehicleService {
     List<Vehicle> findAll();
 
     Vehicle findById(String id);
+
+    Vehicle update(Vehicle vehicle);
+
 }
