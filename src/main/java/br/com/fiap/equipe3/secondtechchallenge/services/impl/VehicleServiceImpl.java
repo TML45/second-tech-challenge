@@ -49,8 +49,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle findById(String id) {
-        return this.vehicleRepository.findById(id)
+    public Vehicle findById(String plate) {
+        return this.vehicleRepository.findById(plate)
                 .orElseThrow(() -> new NotFoundException("Vehicle not found."));
     }
 

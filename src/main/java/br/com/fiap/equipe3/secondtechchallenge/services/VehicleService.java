@@ -9,7 +9,7 @@ public interface VehicleService {
 
     List<Vehicle> findAll();
 
-    Vehicle findById(String id);
+    Vehicle findById(String plate);
 
     Vehicle update(Vehicle vehicle);
 
