@@ -2,6 +2,8 @@ package br.com.fiap.equipe3.secondtechchallenge.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -16,7 +18,11 @@ public class Scheduling {
 
     private LocalDateTime startDate;
 
+    @Indexed
     private String vehiclePlate;
 
     private Payment payment;
+
+    @Version
+    private Long version;
 }

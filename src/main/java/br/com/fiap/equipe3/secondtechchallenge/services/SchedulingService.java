@@ -1,7 +1,7 @@
 package br.com.fiap.equipe3.secondtechchallenge.services;
 
 import br.com.fiap.equipe3.secondtechchallenge.models.Scheduling;
-import br.com.fiap.equipe3.secondtechchallenge.models.SchedulingStatusDTO;
+import br.com.fiap.equipe3.secondtechchallenge.models.dtos.SchedulingStatusDTO;
 
 import java.util.List;
 

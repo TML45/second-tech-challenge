@@ -2,7 +2,7 @@ package br.com.fiap.equipe3.secondtechchallenge.services.impl;
 
 import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.NotFoundException;
 import br.com.fiap.equipe3.secondtechchallenge.models.Scheduling;
-import br.com.fiap.equipe3.secondtechchallenge.models.SchedulingStatusDTO;
+import br.com.fiap.equipe3.secondtechchallenge.models.dtos.SchedulingStatusDTO;
 import br.com.fiap.equipe3.secondtechchallenge.models.enums.SchedulingStatus;
 import br.com.fiap.equipe3.secondtechchallenge.repository.SchedulingRepository;
 import br.com.fiap.equipe3.secondtechchallenge.repository.VehicleRepository;

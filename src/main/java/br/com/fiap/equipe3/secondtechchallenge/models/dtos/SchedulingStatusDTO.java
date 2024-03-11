@@ -1,4 +1,4 @@
-package br.com.fiap.equipe3.secondtechchallenge.models;
+package br.com.fiap.equipe3.secondtechchallenge.models.dtos;
 
 import br.com.fiap.equipe3.secondtechchallenge.models.enums.SchedulingStatus;
 import lombok.AllArgsConstructor;
