@@ -12,5 +12,7 @@ public interface SchedulingService {
 
     Scheduling findById(String id);
 
+    Scheduling update(Scheduling scheduling);
+
     SchedulingStatusDTO findSchedulingStatusByPlate(String plate);
 }

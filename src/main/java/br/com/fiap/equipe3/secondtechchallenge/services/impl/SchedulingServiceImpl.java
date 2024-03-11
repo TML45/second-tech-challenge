@@ -49,6 +49,14 @@ public class SchedulingServiceImpl implements SchedulingService {
                 .orElseThrow(() -> new NotFoundException("Scheduling not found."));
     }
 
+    @Override
+    public Scheduling update(Scheduling scheduling) {
+        if (!this.schedulingRepository.existsById(scheduling.getId())) {
+            throw new NotFoundException("Scheduling not found.");
+        }
+
+        return this.schedulingRepository.save(scheduling);
+    }
 
     @Override
     public SchedulingStatusDTO findSchedulingStatusByPlate(String plate) {

@@ -49,8 +49,17 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle findById(String id) {
-        return this.vehicleRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Conductor not found."));
+    public Vehicle findById(String plate) {
+        return this.vehicleRepository.findById(plate)
+                .orElseThrow(() -> new NotFoundException("Vehicle not found."));
+    }
+
+    @Override
+    public Vehicle update(Vehicle vehicle) {
+        if (!this.vehicleRepository.existsByPlate(vehicle.getPlate())) {
+            throw new NotFoundException("Vehicle not found.");
+        }
+
+        return this.vehicleRepository.save(vehicle);
     }
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VehicleRepository extends MongoRepository<Vehicle, String> {
+    boolean existsByPlate(String plate);
 }

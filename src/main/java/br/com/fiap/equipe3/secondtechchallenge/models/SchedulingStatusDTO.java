@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SchedulingStatusDTO {
     private SchedulingStatus status;
-    private LocalDateTime endAt = null;
+    private LocalDateTime endsAt = null;
 
     SchedulingStatusDTO(SchedulingStatus status) {
         this.status = status;
