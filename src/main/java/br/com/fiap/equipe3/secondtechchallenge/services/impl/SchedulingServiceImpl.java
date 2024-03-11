@@ -34,7 +34,6 @@ public class SchedulingServiceImpl implements SchedulingService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-
     @Override
     @Transactional
     public Scheduling save(Scheduling scheduling) {

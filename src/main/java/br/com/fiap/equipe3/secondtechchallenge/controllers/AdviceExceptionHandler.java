@@ -1,5 +1,6 @@
 package br.com.fiap.equipe3.secondtechchallenge.controllers;
 
+import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.InvalidContractingHoursException;
 import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.NotFoundException;
 import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.StandardError;
 import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.ValidateError;
@@ -56,5 +57,23 @@ public class AdviceExceptionHandler {
         }
 
         return ResponseEntity.status(status).body(validateError);
+    }
+
+    @ExceptionHandler(InvalidContractingHoursException.class)
+    public ResponseEntity<StandardError> handleInvalidContractingHoursException(
+            InvalidContractingHoursException e,
+            HttpServletRequest request
+    ) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        final StandardError err = new StandardError();
+
+        err.setTimestamp(Instant.now());
+        err.setStatus(status.value());
+        err.setError(status.name());
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(err);
     }
 }
