@@ -1,7 +1,7 @@
 package br.com.fiap.equipe3.secondtechchallenge.controllers;
 
 import br.com.fiap.equipe3.secondtechchallenge.models.Scheduling;
-import br.com.fiap.equipe3.secondtechchallenge.models.SchedulingStatusDTO;
+import br.com.fiap.equipe3.secondtechchallenge.models.dtos.SchedulingStatusDTO;
 import br.com.fiap.equipe3.secondtechchallenge.services.SchedulingService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
