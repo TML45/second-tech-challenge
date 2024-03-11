@@ -1,9 +1,6 @@
 package br.com.fiap.equipe3.secondtechchallenge.controllers;
 
-import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.InvalidContractingHoursException;
-import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.NotFoundException;
-import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.StandardError;
-import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.ValidateError;
+import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,11 +56,8 @@ public class AdviceExceptionHandler {
         return ResponseEntity.status(status).body(validateError);
     }
 
-    @ExceptionHandler(InvalidContractingHoursException.class)
-    public ResponseEntity<StandardError> handleInvalidContractingHoursException(
-            InvalidContractingHoursException e,
-            HttpServletRequest request
-    ) {
+    @ExceptionHandler({InvalidContractingHoursException.class, InvalidPaymentException.class})
+    public ResponseEntity<StandardError> handleInvalidsException(RuntimeException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         final StandardError err = new StandardError();

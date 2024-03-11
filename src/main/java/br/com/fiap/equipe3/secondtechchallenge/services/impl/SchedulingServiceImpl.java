@@ -1,5 +1,6 @@
 package br.com.fiap.equipe3.secondtechchallenge.services.impl;
 
+import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.InvalidPaymentException;
 import br.com.fiap.equipe3.secondtechchallenge.controllers.exception.NotFoundException;
 import br.com.fiap.equipe3.secondtechchallenge.models.Scheduling;
 import br.com.fiap.equipe3.secondtechchallenge.models.dtos.SchedulingStatusDTO;
@@ -42,6 +43,8 @@ public class SchedulingServiceImpl implements SchedulingService {
 
         if (this.paymentService.Realize(scheduling.getPayment())) {
             scheduling.getPayment().setRealizationDate(LocalDateTime.now());
+        } else {
+            throw new InvalidPaymentException("Invalid payment");
         }
 
         return this.schedulingRepository.save(scheduling);

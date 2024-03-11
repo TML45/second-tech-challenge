@@ -4,6 +4,7 @@ import br.com.fiap.equipe3.secondtechchallenge.models.Payment;
 import br.com.fiap.equipe3.secondtechchallenge.services.PaymentService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +18,18 @@ public class PaymentServiceImpl implements PaymentService {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
-        return true;
+
+        return checkPaymentValue(payment.getValue());
+    }
+
+    private boolean checkPaymentValue(BigDecimal value) {
+        int comparationToZero = value.compareTo(BigDecimal.ZERO);
+        boolean valueIsZero = comparationToZero == 0;
+        boolean valueIsLessThanZero = comparationToZero < 0;
+
+        boolean isBadValue = valueIsZero || valueIsLessThanZero;
+
+        return !isBadValue;
     }
 
     private void fakeDelay() throws InterruptedException {
