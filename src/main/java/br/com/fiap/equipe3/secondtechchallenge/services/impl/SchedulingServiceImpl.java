@@ -6,6 +6,7 @@ import br.com.fiap.equipe3.secondtechchallenge.models.dtos.SchedulingStatusDTO;
 import br.com.fiap.equipe3.secondtechchallenge.models.enums.SchedulingStatus;
 import br.com.fiap.equipe3.secondtechchallenge.repository.SchedulingRepository;
 import br.com.fiap.equipe3.secondtechchallenge.repository.VehicleRepository;
+import br.com.fiap.equipe3.secondtechchallenge.services.PaymentService;
 import br.com.fiap.equipe3.secondtechchallenge.services.SchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -28,6 +29,9 @@ public class SchedulingServiceImpl implements SchedulingService {
     private VehicleRepository vehicleRepository;
 
     @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
     private MongoTemplate mongoTemplate;
 
 
@@ -36,6 +40,10 @@ public class SchedulingServiceImpl implements SchedulingService {
     public Scheduling save(Scheduling scheduling) {
         this.vehicleRepository.findById(scheduling.getVehiclePlate())
                 .orElseThrow(() -> new NotFoundException("Vehicle not found."));
+
+        if (this.paymentService.Realize(scheduling.getPayment())) {
+            scheduling.getPayment().setRealizationDate(LocalDateTime.now());
+        }
 
         return this.schedulingRepository.save(scheduling);
     }
