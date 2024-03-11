@@ -1,5 +1,8 @@
 # Second Tech Challenge - Parquímetro API
 
+## Modelagem de Dados NoSQL
+![Modelagem de Dados](./docs/modelo-de-dados-nosql.jpg)
+
 ## Technical documentation
 > Custom link: [`http://application-host:8080/swagger.html`](localhost:8080/swagger.html) 
 
