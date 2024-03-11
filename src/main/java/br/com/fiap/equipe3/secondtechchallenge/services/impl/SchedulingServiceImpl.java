@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,6 +32,7 @@ public class SchedulingServiceImpl implements SchedulingService {
 
 
     @Override
+    @Transactional
     public Scheduling save(Scheduling scheduling) {
         this.vehicleRepository.findById(scheduling.getVehiclePlate())
                 .orElseThrow(() -> new NotFoundException("Vehicle not found."));
@@ -39,17 +41,20 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Scheduling> findAll() {
         return this.schedulingRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Scheduling findById(String id) {
         return this.schedulingRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Scheduling not found."));
     }
 
     @Override
+    @Transactional
     public Scheduling update(Scheduling scheduling) {
         if (!this.schedulingRepository.existsById(scheduling.getId())) {
             throw new NotFoundException("Scheduling not found.");
@@ -59,6 +64,7 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public SchedulingStatusDTO findSchedulingStatusByPlate(String plate) {
         Scheduling scheduling = this.getLatestSchedulingBasedOnStartDateByPlate(plate);
 
